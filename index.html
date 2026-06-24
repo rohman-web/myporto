@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohman Teguh | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b27;
+      --bg-card: #1c2333;
+      --bg-card-hover: #212940;
+      --accent-blue: #4f8ef7;
+      --accent-purple: #8b5cf6;
+      --accent-gradient: linear-gradient(90deg, #4f8ef7, #8b5cf6);
+      --accent-gradient-btn: linear-gradient(135deg, #4f8ef7, #8b5cf6);
+      --text-primary: #f0f4ff;
+      --text-secondary: #8b9cc8;
+      --text-muted: #5a6a8a;
+      --border: rgba(255,255,255,0.06);
+      --nav-bg: rgba(13,17,23,0.92);
+      --icon-bg: linear-gradient(135deg, #4f8ef7, #8b5cf6);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Particles background */
+    #particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      opacity: 0.25;
+      animation: float linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { -webkit-text-fill-color: var(--text-primary); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      transition: all 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(79,142,247,0.12);
+      color: var(--text-primary);
+    }
+    .nav-links a.active {
+      background: rgba(79,142,247,0.18);
+    }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .btn-hire {
+      background: var(--accent-gradient-btn);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.4rem;
+      border-radius: 24px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .btn-hire:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
+      padding: 1rem;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .mobile-menu a:hover { background: rgba(79,142,247,0.12); color: var(--text-primary); }
+
+    /* ─── SECTIONS ─── */
+    section {
+      display: none;
+      min-height: 100vh;
+      padding: 100px 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    section.active { display: block; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ─── HOME ─── */
+    #home {
+      display: none;
+      align-items: center;
+    }
+    #home.active { display: flex; }
+    .home-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      min-height: calc(100vh - 120px);
+    }
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(79,142,247,0.08);
+      border: 1px solid rgba(79,142,247,0.2);
+      border-radius: 20px;
+      padding: 0.35rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .available-badge .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .home-left h1 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    .home-left h1 .name {
+      display: block;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .typewriter-wrap {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      min-height: 1.5rem;
+    }
+    .typewriter-wrap #typewriter::after {
+      content: '|';
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .home-desc {
+      color: var(--text-secondary);
+      line-height: 1.75;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+    .home-actions { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; }
+    .btn-primary {
+      background: var(--accent-gradient-btn);
+      color: #fff;
+      padding: 0.7rem 1.8rem;
+      border-radius: 24px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+    .social-links { display: flex; gap: 1rem; }
+    .social-links a {
+      color: var(--text-secondary);
+      font-size: 1.3rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .social-links a:hover { color: var(--accent-blue); transform: translateY(-2px); }
+
+    /* Photo area */
+    .home-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .photo-wrapper{
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.profile-photo{
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+    margin: 0 auto;
+}
+
+.profile-photo {
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Tambahkan transisi */
+  filter: grayscale(100%); /* Awalnya grayscale */
+}
+
+.profile-photo:hover {
+  filter: grayscale(0%); /* Kembalikan warna saat hover */
+}
+
+/* Tablet */
+@media (max-width: 900px){
+    .profile-photo{
+        width: 280px;
+        height: 280px;
+    }
+}
+
+/* HP */
+/* HP */
+@media (max-width: 600px) {
+  section { padding: 90px 1rem 3rem; }
+  
+  /* Geser posisi wrapper foto sedikit ke atas */
+  .photo-wrapper { 
+    width: 20px; 
+    height: 230px; 
+    margin-top: -100px; /* Menarik foto ke atas */
+  }
+
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Sesuaikan ukuran dan posisi float badge agar pas dengan ukuran foto baru */
+  .float-badge { 
+    width: 36px; 
+    height: 36px; 
+  }
+  
+  .float-badge i { font-size: 0.9rem; }
+  
+  /* Posisi badge disesuaikan agar tidak menabrak foto */
+  .float-badge.code  { right: 10px; top: 20%; }
+  .float-badge.design { left: 10px; top: 50%; }
+  .float-badge.zap   { right: 10px; bottom: 20%; }
+
+  .projects-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+}
+
+    .photo-frame {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--text-muted);
+    }
+    .photo-placeholder i { font-size: 3rem; }
+    .photo-placeholder p { font-size: 0.85rem; }
+    .float-badge {
+      position: absolute;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; height: 44px;
+    }
+    .float-badge i {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 1.1rem;
+    }
+    .float-badge.code { top: 50%; right: -20px; transform: translateY(-60px); }
+    .float-badge.design { left: -20px; top: 50%; transform: translateY(20px); }
+    .float-badge.zap { bottom: 30px; right: -20px; }
+
+    /* ─── ABOUT ─── */
+    .section-title {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+    .section-title .highlight {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 3.5rem;
+      font-size: 0.95rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: background 0.2s;
+    }
+    .card:hover { background: var(--bg-card-hover); }
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      color: var(--text-secondary);
+      line-height: 1.75;
+      font-size: 0.9rem;
+    }
+    .about-summary { grid-column: 1; }
+
+    .about-info-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .info-card:hover { background: var(--bg-card-hover); }
+    .info-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--icon-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-icon i { color: #fff; font-size: 1rem; }
+    .info-text h4 { font-size: 0.95rem; font-weight: 600; }
+    .info-text p { color: var(--text-secondary); font-size: 0.82rem; margin-top: 0.1rem; }
+
+    .stats-title {
+      text-align: center;
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .stats-title .highlight {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem 1rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .stat-card:hover { background: var(--bg-card-hover); }
+    .stat-number {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label { color: var(--text-secondary); font-size: 0.85rem; }
+
+    /* ─── SKILLS ─── */
+    .skill-category { margin-bottom: 2.5rem; }
+    .skill-category-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .skill-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: var(--icon-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .skill-icon i { color: #fff; font-size: 1.15rem; }
+    .skill-category-header h3 { font-size: 1.25rem; font-weight: 700; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+    }
+    .skill-card:hover { background: var(--bg-card-hover); }
+    .skill-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .skill-bar {
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      height: 6px;
+      overflow: hidden;
+      margin-bottom: 0.4rem;
+    }
+    .skill-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: var(--accent-gradient);
+      width: 0;
+      transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .skill-pct {
+      text-align: right;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    /* ─── PROJECTS ─── */
+    .filter-tabs {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      padding: 0.45rem 1.1rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+    .filter-btn.active {
+      background: var(--accent-gradient-btn);
+      color: #fff;
+      border-color: transparent;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-4px); background: var(--bg-card-hover); }
+    .project-card.hidden { display: none; }
+    .project-img {
+      width: 100%;
+      height: 190px;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .project-img i { font-size: 2.5rem; color: var(--text-muted); position: relative; z-index: 1; }
+    .project-img img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+    }
+    .project-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .project-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-desc { color: var(--text-secondary); font-size: 0.83rem; line-height: 1.6; margin-bottom: 1rem; flex-grow: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+    .tag {
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.2);
+      color: var(--accent-blue);
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .timeline { position: relative; max-width: 860px; margin: 0 auto; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .timeline-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .timeline-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--icon-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .timeline-icon i { color: #fff; font-size: 1.1rem; }
+    .timeline-line {
+      width: 2px;
+      flex: 1;
+      background: linear-gradient(to bottom, rgba(79,142,247,0.4), rgba(139,92,246,0.1));
+      margin-top: 0.5rem;
+      min-height: 40px;
+    }
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
+      transition: background 0.2s;
+    }
+    .timeline-card:hover { background: var(--bg-card-hover); }
+    .timeline-date {
+      font-size: 0.83rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .timeline-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .timeline-card p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; }
+
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      
+    }
+    .service-card {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      
+    }
+    .service-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 32px rgba(79,142,247,0.25);
+    }
+    .service-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      
+    }
+    .service-card:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .contact-left h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem; }
+    .contact-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      transition: background 0.2s;
+    }
+    .contact-info-card:hover { background: var(--bg-card-hover); }
+    .contact-info-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: var(--icon-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info-icon i { color: #fff; font-size: 0.95rem; }
+    .contact-info-text label { font-size: 0.75rem; color: var(--text-muted); display: block; }
+    .contact-info-text span { font-size: 0.88rem; font-weight: 500; }
+
+    .contact-form-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+    .contact-form-wrap h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--text-secondary); }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: rgba(79,142,247,0.5); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .btn-send {
+      width: 100%;
+      background: var(--accent-gradient-btn);
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-send:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand .nav-logo { font-size: 1.2rem; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul li a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--text-primary); }
+    .footer-social { display: flex; gap: 0.75rem; }
+    .footer-social a {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover { background: rgba(79,142,247,0.12); color: var(--accent-blue); }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--text-secondary); }
+    .back-top {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .back-top:hover { background: rgba(79,142,247,0.12); color: var(--accent-blue); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      /* Home: stack jadi 1 kolom, foto di atas teks */
+      .home-inner {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        text-align: center;
+        justify-items: center;
+        gap: 2rem;
+        min-height: unset;
+        padding: 1rem 0;
+      }
+      /* Foto muncul & pindah ke baris pertama */
+      .home-right {
+        display: flex !important;
+        order: -1;
+        justify-content: center;
+        width: 100%;
+      }
+      .photo-wrapper {
+        width: 240px;
+        height: 270px;
+      }
+      /* Geser float badge biar gak kepotong */
+      .float-badge.code  { right: -10px; }
+      .float-badge.design { left: -10px; }
+      .float-badge.zap   { right: -10px; bottom: 20px; }
+
+      .home-left { width: 100%; }
+      .home-desc { max-width: 100%; }
+      .home-actions, .social-links { justify-content: center; }
+
+      .about-grid { grid-template-columns: 1fr; }
+      .about-summary { grid-column: 1; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+    }
+    @media (max-width: 580px) {
+      section { padding: 90px 1rem 3rem; }
+      .photo-wrapper { width: 200px; height: 230px; }
+      .float-badge { width: 36px; height: 36px; }
+      .float-badge i { font-size: 0.9rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+
+    /* Fade-in animation for sections */
+    .fade-in { animation: fadeInUp 0.5s ease both; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── LANG TOGGLE ─── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      padding: 2px;
+      gap: 2px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.28rem 0.65rem;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+      font-family: 'Inter', sans-serif;
+    }
+    .lang-btn.active {
+      background: var(--accent-gradient-btn);
+      color: #fff;
+    }
+    .lang-btn:not(.active):hover {
+      color: var(--text-primary);
+    }
+    .home-inner{
+    display:grid;
+    grid-template-columns:1fr 420px;
+    align-items:center;
+    gap:80px;
+}
+
+@media (max-width:900px){
+
+    .home-inner{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .home-left{
+        order:1;
+    }
+
+    .home-right{
+        order:2;
+        margin:20px 0;
+    }
+
+    .home-actions{
+        order:3;
+    }
+}
+/* Project grid responsif sudah diatur di media query utama di atas */
+  </style>
+</head>
+<body>
+
+<!-- Floating particles -->
+<div id="particles"></div>
+
+<!-- Navbar -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showSection('home')">Rohman Teguh<span></span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" class="active" onclick="showSection('home',this)" data-i18n="nav.home">Home</a></li>
+    <li><a href="#" onclick="showSection('about',this)" data-i18n="nav.about">About</a></li>
+    <li><a href="#" onclick="showSection('skills',this)" data-i18n="nav.skills">Skills</a></li>
+    <li><a href="#" onclick="showSection('projects',this)" data-i18n="nav.projects">Projects</a></li>
+    <li><a href="#" onclick="showSection('services',this)" data-i18n="nav.services">Gallery</a></li>
+    <li><a href="#" onclick="showSection('experience',this)" data-i18n="nav.experience">Experience</a></li>
+    <li><a href="#" onclick="showSection('contact',this)" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btnID" onclick="setLang('id')">ID</button>
+    </div>
+    <button class="btn-hire" data-i18n="nav.hire" onclick="showSection('contact',null)">Hire Me</button>
+    <button class="nav-toggle" id="navToggle" onclick="toggleMobile()">☰</button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showSection('home',null);toggleMobile()" data-i18n="nav.home">Home</a>
+  <a href="#" onclick="showSection('about',null);toggleMobile()" data-i18n="nav.about">About</a>
+  <a href="#" onclick="showSection('skills',null);toggleMobile()" data-i18n="nav.skills">Skills</a>
+  <a href="#" onclick="showSection('projects',null);toggleMobile()" data-i18n="nav.projects">Projects</a>
+  <a href="#" onclick="showSection('services',null);toggleMobile()" data-i18n="nav.services">My Galery</a>
+  <a href="#" onclick="showSection('experience',null);toggleMobile()" data-i18n="nav.experience">Experience</a>
+  <a href="#" onclick="showSection('contact',null);toggleMobile()" data-i18n="nav.contact">Contact</a>
+</div>
+
+<!-- ═══ HOME ═══ -->
+<section id="home" class="active">
+  <div class="section-inner">
+    <div class="home-inner">
+
+      <!-- KIRI -->
+      <div class="home-left">
+
+        <div class="available-badge" data-i18n="home.badge">
+          <span class="dot"></span>
+          Learning memories
+        </div>
+
+        <h1 data-i18n="home.greeting">
+          Hi, I'm
+        </h1>
+        <h1>
+          <span class="name">Rohman Teguh</span>
+        </h1>
+
+        <div class="typewriter-wrap">
+          <span id="typewriter"></span>
+        </div>
+
+        <p class="home-desc" data-i18n="home.desc">
+          This portfolio showcases my journey in weaving code and logic into digital products that are innovative, intuitive, and centered on optimal user experience.
+        </p>
+      </div>
+
+      <!-- KANAN -->
+      <div class="home-right">
+
+        <div class="photo-wrapper">
+
+          <img src="IMAGE/FOTOKU.jpg"
+               alt="Rohman Teguh"
+               class="profile-photo">
+
+          <div class="float-badge code">
+            <i class="fas fa-code"></i>
+          </div>
+
+          <div class="float-badge design">
+            <i class="fas fa-gamepad"></i>
+          </div>
+
+          <div class="float-badge zap">
+            <i class="fas fa-bolt"></i>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span data-i18n="about.title">About</span> <span class="highlight" data-i18n="about.titleHL">Me</span></h2>
+    <p class="section-subtitle" data-i18n="about.subtitle">This is my biodata. I hope you can get to know me more deeply.</p>
+
+    <div class="about-grid">
+      <div class="card about-summary">
+        <h3 data-i18n="about.summaryTitle">Professional Summary</h3>
+        <p data-i18n="about.p1">Hello, my name is Rohman Teguh, a student of Software Engineering (Rekayasa Perangkat Lunak) at SMK Negeri 1 Mejayan. I have a strong passion for technology, particularly in software development and web development.</p>
+        <br>
+        <p data-i18n="about.p2">Throughout my studies, I have gained knowledge and hands-on experience in various programming technologies, including HTML, CSS, JavaScript, PHP, MySQL, and modern web development tools. I enjoy creating responsive, user-friendly, and functional websites while continuously improving my technical and problem-solving skills.</p>
+        <br>
+        <p data-i18n="about.p3">I am a motivated and enthusiastic learner who enjoys working both independently and as part of a team. I am always eager to explore new technologies, take on challenges, and develop innovative digital solutions that can make a positive impact.</p>
+      </div>
+
+      <div class="about-info-cards">
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="info-text">
+            <h4 data-i18n="about.edu">Education</h4>
+            <p>SMKN 1 Mejayan</p>
+            <p data-i18n="about.eduDetail">Software Engineering, 2024–2026</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="info-text">
+            <h4 data-i18n="about.exp">Experience</h4>
+            <p data-i18n="about.exp1">Developed responsive websites.</p>
+            <p data-i18n="about.exp2">Completed a 6-month internship.</p>
+            <p data-i18n="about.exp3">Built web-based applications.</p>
+            <p data-i18n="about.exp4">Collaborated on software projects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="stats-title"><span data-i18n="about.histTitle">My</span> <span class="highlight" data-i18n="about.histTitleHL">History</span></h3>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number">20+</div><div class="stat-label" data-i18n="about.stat1">Projects Completed</div></div>
+      <div class="stat-card"><div class="stat-number">3</div><div class="stat-label" data-i18n="about.stat2">Years Learning</div></div>
+      <div class="stat-card"><div class="stat-number">6</div><div class="stat-label" data-i18n="about.stat3">Months Internship</div></div>
+      <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label" data-i18n="about.stat4">Certificates</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span data-i18n="skills.title">My</span> <span class="highlight" data-i18n="skills.titleHL">Skills</span></h2>
+    <p class="section-subtitle" data-i18n="skills.subtitle">List of skills that I have</p>
+
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-icon"><i class="fas fa-code"></i></div>
+        <h3 data-i18n="skills.frontend">Frontend Development</h3>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card"><div class="skill-name">HTML &amp; CSS</div><div class="skill-bar"><div class="skill-fill" data-pct="95"></div></div><div class="skill-pct">95%</div></div>
+        <div class="skill-card"><div class="skill-name">JavaScript</div><div class="skill-bar"><div class="skill-fill" data-pct="92"></div></div><div class="skill-pct">92%</div></div>
+        <div class="skill-card"><div class="skill-name">React</div><div class="skill-bar"><div class="skill-fill" data-pct="55"></div></div><div class="skill-pct">55%</div></div>
+        <div class="skill-card"><div class="skill-name">Tailwind CSS</div><div class="skill-bar"><div class="skill-fill" data-pct="33"></div></div><div class="skill-pct">33%</div></div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-icon"><i class="fas fa-server"></i></div>
+        <h3 data-i18n="skills.backend">Backend Development</h3>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card"><div class="skill-name">Node.js</div><div class="skill-bar"><div class="skill-fill" data-pct="67"></div></div><div class="skill-pct">67%</div></div>
+        <div class="skill-card"><div class="skill-name">PHP</div><div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div><div class="skill-pct">80%</div></div>
+        <div class="skill-card"><div class="skill-name">Laravel</div><div class="skill-bar"><div class="skill-fill" data-pct="45"></div></div><div class="skill-pct">45%</div></div>
+        <div class="skill-card"><div class="skill-name">MySQL</div><div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div><div class="skill-pct">90%</div></div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <div class="skill-category-header">
+        <div class="skill-icon"><i class="fas fa-wrench"></i></div>
+        <h3 data-i18n="skills.tools">Tools &amp; Technologies</h3>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card"><div class="skill-name">Git &amp; GitHub</div><div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div><div class="skill-pct">90%</div></div>
+        <div class="skill-card"><div class="skill-name">Figma</div><div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div><div class="skill-pct">90%</div></div>
+        <div class="skill-card"><div class="skill-name">VS Code</div><div class="skill-bar"><div class="skill-fill" data-pct="95"></div></div><div class="skill-pct">95%</div></div>
+        <div class="skill-card"><div class="skill-name">Claude Code</div><div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div><div class="skill-pct">80%</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span data-i18n="proj.title">My</span> <span class="highlight" data-i18n="proj.titleHL">Projects</span></h2>
+    <p class="section-subtitle" data-i18n="proj.subtitle">Some projects during internship or at school</p>
+
+    <div class="filter-tabs">
+      <button class="filter-btn active" onclick="filterProjects('all',this)" data-i18n="proj.filterAll">All</button>
+      <button class="filter-btn" onclick="filterProjects('website',this)" data-i18n="proj.filterWeb">Website</button>
+      <button class="filter-btn" onclick="filterProjects('mobile',this)" data-i18n="proj.filterMobile">Mobile APP</button>
+      <button class="filter-btn" onclick="filterProjects('repair',this)" data-i18n="proj.filterRepair">Repair</button>
+      <button class="filter-btn" onclick="filterProjects('computer',this)" data-i18n="proj.filterComp">Computer Systems</button>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card" data-cat="computer">
+        <div class="project-img">
+          <img src="IMAGE/cekspek.jpeg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p1title">Check Computer Specs</h3>
+          <p class="project-desc" data-i18n="proj.p1desc">The process of checking computer specifications to ensure system performance and compatibility requirements.</p>
+          <div class="project-tags"><span class="tag">Task Manager</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="computer">
+        <div class="project-img">
+          <img src="IMAGE/penginstalandriver.jpeg" alt="Proje ct Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p2title">Instalasi Driver Printer</h3>
+          <p class="project-desc" data-i18n="proj.p2desc">Printer driver installation process via Epson or compatible driver packages for various printer models.</p>
+          <div class="project-tags"><span class="tag">Epson</span><span class="tag">Canon</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="computer">
+        <div class="project-img">
+          <img src="IMAGE/perakitanpc.jpeg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p3title">Upgrade or Replace PC Components</h3>
+          <p class="project-desc" data-i18n="proj.p3desc">Hardware upgrade process including RAM, SSD, and other components to improve PC performance.</p>
+          <div class="project-tags"><span class="tag">Repair</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="repair">
+        <div class="project-img">
+          <img src="IMAGE/blower.jpeg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p4title">PC and Monitor Cleaning Process</h3>
+          <p class="project-desc" data-i18n="proj.p4desc">Aims to remove dust that sticks to components because it has a big impact on performance.</p>
+          <div class="project-tags"><span class="tag">Blower</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="repair">
+        <div class="project-img">
+          <img src="IMAGE/GANTIHEAD.jpg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p5title">Head Change</h3>
+          <p class="project-desc" data-i18n="proj.p5desc">The print head replacement process aims to return the printers print results to normal conditions.</p>
+          <div class="project-tags"><span class="tag">Head Printers</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="computer">
+        <div class="project-img">
+          <img src="IMAGE/TAMBAHSPACE.jpg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p6title">Adding Space to Local Disk C</h3>
+          <p class="project-desc" data-i18n="proj.p6desc">The goal is to increase storage capacity to store more data using disk management tools.</p>
+          <div class="project-tags"><span class="tag">Minitools</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="all">
+        <div class="project-img">
+          <img src="IMAGE/DESAINCANVA.jpg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p7title">Canva design</h3>
+          <p class="project-desc" data-i18n="proj.p7desc">Design and create a task schedule at the internship location.</p>
+          <div class="project-tags"><span class="tag">Canva</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="repair">
+        <div class="project-img">
+          <img src="IMAGE/cekkabelrj45.jpeg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p8title">Check the RJ45 cable</h3>
+          <p class="project-desc" data-i18n="proj.p8desc">Check the RJ45 cable to make sure everything is working.</p>
+          <div class="project-tags"><span class="tag">Tester</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="repair">
+        <div class="project-img">
+          <img src="IMAGE/PERGANTIANSSD.jpg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p9title">SSD Replacement</h3>
+          <p class="project-desc" data-i18n="proj.p9desc">The process of replacing an HDD with an SSD for faster performance.</p>
+          <div class="project-tags"><span class="tag">Repair</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="website">
+        <div class="project-img">
+          <img src="IMAGE/WEBSITE1.jpg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p10title">Website Portofolio</h3>
+          <p class="project-desc" data-i18n="proj.p10desc">Simple portfolio website for vocational school students.</p>
+          <div class="project-tags"><span class="tag">Website</span></div>
+        </div>
+      </div>
+      <div class="project-card" data-cat="mobile">
+        <div class="project-img">
+          <img src="IMAGE/WEBSITE2.jpg" alt="Project Image" class="project-photo">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title" data-i18n="proj.p11title">Clothing and equipment stores</h3>
+          <p class="project-desc" data-i18n="proj.p11desc">Mobile app featuring sales of essential goods.</p>
+          <div class="project-tags"><span class="tag">Mobile App</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span data-i18n="svc.title">My</span> <span class="highlight" data-i18n="svc.titleHL">Galery</span></h2>
+    <p class="section-subtitle" data-i18n="svc.subtitle">Collection of photos at school or during internship</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="IMAGE/BALI1.jpg" alt="">
+      </div>
+      <div class="service-card">
+        <img src="IMAGE/UNIPMA2.jpg" alt="">
+      </div>
+      <div class="service-card">
+        <img src="IMAGE/BALI2.jpg" alt="">
+      </div>
+      <div class="service-card">
+        <img src="IMAGE/BALIPANTAI.jpg" alt="">
+      </div>
+      <div class="service-card">
+        <img src="IMAGE/UNIPMA3.jpg" alt="">
+      </div>
+      <div class="service-card">
+        <img src="IMAGE/BALI3.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="experience">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span data-i18n="exp.title">My</span> <span class="highlight" data-i18n="exp.titleHL">Experience</span></h2>
+    <p class="section-subtitle" data-i18n="exp.subtitle">My professional journey and experiences in school and internship.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-date" data-i18n="exp.e1date">2026 January – Now</div>
+          <h3 data-i18n="exp.e1title">Create websites and mobile apps easily.</h3>
+          <p data-i18n="exp.e1desc">From January 2026 until now I have gained a lot of experience and I have also started an internship so I have added to my skills beyond programming.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-date" data-i18n="exp.e2date">2025 May – 2026 January</div>
+          <h3 data-i18n="exp.e2title">Started expanding my knowledge and exploring the world of programming.</h3>
+          <p data-i18n="exp.e2desc">I started to expand my knowledge and explore the world of programming and learn what javascript, php, MySQL, Database, Python, and so on are.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-date" data-i18n="exp.e3date">2025 January – 2025 May</div>
+          <h3 data-i18n="exp.e3title">Starting to like the world of programming</h3>
+          <p data-i18n="exp.e3desc">I started to like the world of programming and started learning to create simple websites using only HTML and CSS.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-date" data-i18n="exp.e4date">2024 August – 2025 January</div>
+          <h3 data-i18n="exp.e4title">First experience entering the world of programming</h3>
+          <p data-i18n="exp.e4desc">The first experience of entering the world of programming felt difficult to understand the code and tools.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span data-i18n="contact.title">Get In</span> <span class="highlight" data-i18n="contact.titleHL">Touch</span></h2>
+    <p class="section-subtitle" data-i18n="contact.subtitle">Have a project in mind? Let's work together to bring your ideas to life</p>
+
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h3 data-i18n="contact.infoTitle">Contact Information</h3>
+        <a class="contact-info-card" href="mailto:rohmanteguh99@gmail.com" style="text-decoration:none;color:inherit;">
+          <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-info-text">
+            <label data-i18n="contact.labelEmail">Email</label>
+            <span>rohmanteguh99@gmail.com</span>
+          </div>
+        </a>
+        <a class="contact-info-card" href="https://wa.me/6285847565851" target="_blank" style="text-decoration:none;color:inherit;">
+          <div class="contact-info-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="contact-info-text">
+            <label>WhatsApp</label>
+            <span>+62 858-4756-5851</span>
+          </div>
+        </a>
+        <a class="contact-info-card" href="https://github.com/teguhhh-bit" target="_blank" style="text-decoration:none;color:inherit;">
+          <div class="contact-info-icon"><i class="fab fa-github"></i></div>
+          <div class="contact-info-text">
+            <label data-i18n="contact.labelGitHub">GitHub</label>
+            <span>@teguhhh-bit</span>
+          </div>
+        </a>
+        <a class="contact-info-card" href="https://instagram.com/tgghhhh__" target="_blank" style="text-decoration:none;color:inherit;">
+          <div class="contact-info-icon"><i class="fab fa-instagram"></i></div>
+          <div class="contact-info-text">
+            <label data-i18n="contact.labelIG">Instagram</label>
+            <span>@tgghhhh__</span>
+          </div>
+        </a>
+        <div class="contact-info-card">
+          <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-info-text">
+            <label data-i18n="contact.labelLocation">Location</label>
+            <span data-i18n="contact.location">Madiun City</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <h3 data-i18n="contact.formTitle">Send a Message</h3>
+        <div class="form-group">
+          <label data-i18n="contact.fName">Name</label>
+          <input type="text" data-i18n-placeholder="contact.phName" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label data-i18n="contact.fEmail">Email</label>
+          <input type="email" placeholder="your.email@example.com" />
+        </div>
+        <div class="form-group">
+          <label data-i18n="contact.fSubject">Subject</label>
+          <input type="text" data-i18n-placeholder="contact.phSubject" placeholder="What is this about?" />
+        </div>
+        <div class="form-group">
+          <label data-i18n="contact.fMessage">Message</label>
+          <textarea data-i18n-placeholder="contact.phMessage" placeholder="Your message..."></textarea>
+        </div>
+        <button class="btn-send" onclick="handleSend(this)">
+          <i class="fas fa-paper-plane"></i> <span data-i18n="contact.sendBtn">Send Message</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#" onclick="showSection('home')">Rohman Teguh</a>
+      <p data-i18n="footer.desc">Full Stack Web Developer crafting exceptional digital experiences with modern technologies.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.quickLinks">Quick Links</h4>
+      <ul>
+        <li><a href="#" onclick="showSection('home',null)" data-i18n="nav.home">Home</a></li>
+        <li><a href="#" onclick="showSection('about',null)" data-i18n="nav.about">About</a></li>
+        <li><a href="#" onclick="showSection('projects',null)" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#" onclick="showSection('contact',null)" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.connect">Connect</h4>
+      <div class="footer-social">
+        <a href="https://github.com/teguhhh-bit" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/tgghhhh__" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:rohmanteguh99@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+  <span data-i18n="footer.copyright">© 2026 Rohman Teguh. All rights reserved.</span>
+  <div class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+</div>
+</footer>
+
+<script>
+  // ════════════════════════════════════════════
+  //  i18n — Translation Dictionary
+  // ════════════════════════════════════════════
+  const i18n = {
+    en: {
+      // Nav
+      'nav.home': 'Home',
+      'nav.about': 'About',
+      'nav.skills': 'Skills',
+      'nav.projects': 'Projects',
+      'nav.services': 'My Galery',
+      'nav.experience': 'Experience',
+      'nav.contact': 'Contact',
+      'nav.hire': 'Hire Me',
+
+      // Home
+      'home.badge': 'Learning memories',
+      'home.greeting': "Hi, I'm",
+      'home.desc': 'This portfolio showcases my journey in weaving code and logic into digital products that are innovative, intuitive, and centered on optimal user experience.',
+      'home.typewriter': ['Thank you for visiting my portfolio', 'Full Stack Web Developer', 'Building the Web, One Line at a Time'],
+
+      // About
+      'about.title': 'About',
+      'about.titleHL': 'Me',
+      'about.subtitle': 'This is my biodata. I hope you can get to know me more deeply.',
+      'about.summaryTitle': 'Professional Summary',
+      'about.p1': 'Hello, my name is Rohman Teguh, a student of Software Engineering (Rekayasa Perangkat Lunak) at SMK Negeri 1 Mejayan. I have a strong passion for technology, particularly in software development and web development.',
+      'about.p2': 'Throughout my studies, I have gained knowledge and hands-on experience in various programming technologies, including HTML, CSS, JavaScript, PHP, MySQL, and modern web development tools. I enjoy creating responsive, user-friendly, and functional websites while continuously improving my technical and problem-solving skills.',
+      'about.p3': 'I am a motivated and enthusiastic learner who enjoys working both independently and as part of a team. I am always eager to explore new technologies, take on challenges, and develop innovative digital solutions that can make a positive impact.',
+      'about.edu': 'Education',
+      'about.eduDetail': 'Software Engineering, 2024–2026',
+      'about.exp': 'Experience',
+      'about.exp1': 'Developed responsive websites.',
+      'about.exp2': 'Completed a 6-month internship.',
+      'about.exp3': 'Built web-based applications.',
+      'about.exp4': 'Collaborated on software projects.',
+      'about.histTitle': 'My',
+      'about.histTitleHL': 'History',
+      'about.stat1': 'Projects Completed',
+      'about.stat2': 'Years Learning',
+      'about.stat3': 'Months Internship',
+      'about.stat4': 'Certificates',
+
+      // Skills
+      'skills.title': 'My',
+      'skills.titleHL': 'Skills',
+      'skills.subtitle': 'List of skills that I have',
+      'skills.frontend': 'Frontend Development',
+      'skills.backend': 'Backend Development',
+      'skills.tools': 'Tools & Technologies',
+
+      // Projects
+      'proj.title': 'My',
+      'proj.titleHL': 'Projects',
+      'proj.subtitle': 'Some projects during internship or at school',
+      'proj.filterAll': 'All',
+      'proj.filterWeb': 'Website',
+      'proj.filterMobile': 'Mobile APP',
+      'proj.filterRepair': 'Repair',
+      'proj.filterComp': 'Computer Systems',
+      'proj.p1title': 'Check Computer Specs',
+      'proj.p1desc': 'The process of checking computer specifications to ensure system performance and compatibility requirements.',
+      'proj.p2title': 'Printer Driver Installation',
+      'proj.p2desc': 'Printer driver installation process via Epson or compatible driver packages for various printer models.',
+      'proj.p3title': 'Upgrade or Replace PC Components',
+      'proj.p3desc': 'Hardware upgrade process including RAM, SSD, and other components to improve PC performance.',
+      'proj.p4title': 'PC and Monitor Cleaning Process',
+      'proj.p4desc': 'Aims to remove dust that sticks to components because it has a big impact on performance.',
+      'proj.p5title': 'Head Change',
+      'proj.p5desc': 'The print head replacement process aims to return the printers print results to normal conditions.',
+      'proj.p6title': 'Adding Space to Local Disk C',
+      'proj.p6desc': 'The goal is to increase storage capacity to store more data using disk management tools.',
+      'proj.p7title': 'Canva design',
+      'proj.p7desc': 'Design and create a task schedule at the internship location.',
+      'proj.p8title': 'Check the RJ45 cable',
+      'proj.p8desc': 'Check the RJ45 cable to make sure everything is working.',
+      'proj.p9title': 'SSD Replacement',
+      'proj.p9desc': 'The process of replacing an HDD with an SSD for faster performance.',
+      'proj.p10title': 'Website Portofolio',
+      'proj.p10desc': 'Simple portfolio website for vocational school students.',
+      'proj.p11title': 'Clothing and equipment stores',
+      'proj.p11desc': 'Mobile app featuring sales of essential goods.',
+
+      // Services
+      'svc.title': 'My',
+      'svc.titleHL': 'Galery',
+      'svc.subtitle': 'Collection of photos at school or during internship',
+      'svc.s1title': 'Web Development',
+      'svc.s1desc': 'Building fast, responsive, and modern websites using the latest technologies including HTML, CSS, JavaScript, PHP, and Laravel.',
+      'svc.s2title': 'UI/UX Design',
+      'svc.s2desc': 'Designing beautiful and user-friendly interfaces using Figma, with a focus on intuitive user experience and modern aesthetics.',
+      'svc.s3title': 'Backend Development',
+      'svc.s3desc': 'Developing robust server-side logic and database management with PHP, Node.js, MySQL, and RESTful API integration.',
+      'svc.s4title': 'PC Repair & Maintenance',
+      'svc.s4desc': 'Hardware troubleshooting, component upgrades, driver installation, and system optimization for desktops and laptops.',
+      'svc.s5title': 'Mobile App Design',
+      'svc.s5desc': 'Creating wireframes and prototypes for mobile applications with clean design principles and smooth user flows.',
+      'svc.s6title': 'Network Setup',
+      'svc.s6desc': 'Setting up and configuring local area networks, cable testing, and basic network infrastructure for small offices.',
+
+      // Experience
+      'exp.title': 'My',
+      'exp.titleHL': 'Experience',
+      'exp.subtitle': 'My professional journey and experiences in school and internship.',
+      'exp.e1date': '2026 January – Now',
+      'exp.e1title': 'Create websites and mobile apps easily.',
+      'exp.e1desc': 'From January 2026 until now I have gained a lot of experience and I have also started an internship so I have added to my skills beyond programming.',
+      'exp.e2date': '2025 May – 2026 January',
+      'exp.e2title': 'Started expanding my knowledge and exploring the world of programming.',
+      'exp.e2desc': 'I started to expand my knowledge and explore the world of programming and learn what javascript, php, MySQL, Database, Python, and so on are.',
+      'exp.e3date': '2025 January – 2025 May',
+      'exp.e3title': 'Starting to like the world of programming',
+      'exp.e3desc': 'I started to like the world of programming and started learning to create simple websites using only HTML and CSS.',
+      'exp.e4date': '2024 August – 2025 January',
+      'exp.e4title': 'First experience entering the world of programming',
+      'exp.e4desc': 'The first experience of entering the world of programming felt difficult to understand the code and tools.',
+
+      // Contact
+      'contact.title': 'Get In',
+      'contact.titleHL': 'Touch',
+      'contact.subtitle': "Have a project in mind? Let's work together to bring your ideas to life",
+      'contact.infoTitle': 'Contact Information',
+      'contact.labelEmail': 'Email',
+      'contact.labelGitHub': 'GitHub',
+      'contact.labelIG': 'Instagram',
+      'contact.labelLocation': 'Location',
+      'contact.location': 'Madiun City',
+      'contact.formTitle': 'Send a Message',
+      'contact.fName': 'Name',
+      'contact.fEmail': 'Email',
+      'contact.fSubject': 'Subject',
+      'contact.fMessage': 'Message',
+      'contact.phName': 'Your name',
+      'contact.phSubject': 'What is this about?',
+      'contact.phMessage': 'Your message...',
+      'contact.sendBtn': 'Send Message',
+      'contact.sentBtn': 'Message Sent!',
+
+      // Footer
+      'footer.desc': 'Full Stack Web Developer crafting exceptional digital experiences with modern technologies.',
+      'footer.quickLinks': 'Quick Links',
+      'footer.connect': 'Connect',
+      'footer.privacy': 'Privacy Policy',
+      'footer.terms': 'Terms of Service',
+      'footer.copyright': '© 2026 Rohman Teguh. All rights reserved.',
+    },
+
+    id: {
+      // Nav
+      'nav.home': 'Beranda',
+      'nav.about': 'Tentang',
+      'nav.skills': 'Keahlian',
+      'nav.projects': 'Proyek',
+      'nav.services': 'Galery Saya',
+      'nav.experience': 'Pengalaman',
+      'nav.contact': 'Kontak',
+      'nav.hire': 'Hire Me',
+
+      // Home
+      'home.badge': 'Kenangan pembelajaran',
+      'home.greeting': 'Halo, Saya',
+      'home.desc': 'Portofolio ini menampilkan perjalanan saya dalam merangkai kode dan logika menjadi produk digital yang inovatif, intuitif, serta berpusat pada pengalaman pengguna yang optimal.',
+      'home.typewriter': ['Terima kasih telah mengunjungi portofolio saya', 'Full Stack Web Developer', 'Membangun Web, Satu Baris Kode'],
+
+      // About
+      'about.title': 'Tentang',
+      'about.titleHL': 'Saya',
+      'about.subtitle': 'Ini adalah biodata saya. Semoga kamu bisa lebih mengenal saya.',
+      'about.summaryTitle': 'Ringkasan Profesional',
+      'about.p1': 'Halo, nama saya Rohman Teguh, siswa Rekayasa Perangkat Lunak di SMK Negeri 1 Mejayan. Saya memiliki passion yang kuat terhadap teknologi, khususnya di bidang pengembangan perangkat lunak dan pengembangan web.',
+      'about.p2': 'Selama belajar, saya telah mendapatkan pengetahuan dan pengalaman langsung di berbagai teknologi pemrograman, termasuk HTML, CSS, JavaScript, PHP, MySQL, dan alat pengembangan web modern. Saya menikmati membuat website yang responsif, ramah pengguna, dan fungsional sambil terus meningkatkan keterampilan teknis dan kemampuan memecahkan masalah.',
+      'about.p3': 'Saya adalah pelajar yang termotivasi dan antusias, senang bekerja secara mandiri maupun dalam tim. Saya selalu ingin menjelajahi teknologi baru, menghadapi tantangan, dan mengembangkan solusi digital inovatif yang berdampak positif.',
+      'about.edu': 'Pendidikan',
+      'about.eduDetail': 'Rekayasa Perangkat Lunak, 2024–2026',
+      'about.exp': 'Pengalaman',
+      'about.exp1': 'Mengembangkan website responsif.',
+      'about.exp2': 'Menyelesaikan magang 6 bulan.',
+      'about.exp3': 'Membangun aplikasi berbasis web.',
+      'about.exp4': 'Berkolaborasi dalam proyek perangkat lunak.',
+      'about.histTitle': 'Riwayat',
+      'about.histTitleHL': 'Saya',
+      'about.stat1': 'Proyek Selesai',
+      'about.stat2': 'Tahun Belajar',
+      'about.stat3': 'Bulan Magang',
+      'about.stat4': 'Sertifikat',
+
+      // Skills
+      'skills.title': 'Keahlian',
+      'skills.titleHL': 'Saya',
+      'skills.subtitle': 'Daftar keahlian yang saya miliki',
+      'skills.frontend': 'Pengembangan Frontend',
+      'skills.backend': 'Pengembangan Backend',
+      'skills.tools': 'Alat & Teknologi',
+
+      // Projects
+      'proj.title': 'Proyek',
+      'proj.titleHL': 'Saya',
+      'proj.subtitle': 'Beberapa proyek selama magang atau di sekolah',
+      'proj.filterAll': 'Semua',
+      'proj.filterWeb': 'Website',
+      'proj.filterMobile': 'Aplikasi Mobile',
+      'proj.filterRepair': 'Perbaikan',
+      'proj.filterComp': 'Sistem Komputer',
+      'proj.p1title': 'Cek Spesifikasi Komputer',
+      'proj.p1desc': 'Proses pengecekan spesifikasi komputer untuk memastikan performa sistem dan persyaratan kompatibilitas.',
+      'proj.p2title': 'Instalasi Driver Printer',
+      'proj.p2desc': 'Proses instalasi driver printer melalui paket driver Epson atau kompatibel untuk berbagai model printer.',
+      'proj.p3title': 'Upgrade atau Ganti Komponen PC',
+      'proj.p3desc': 'Proses upgrade hardware termasuk RAM, SSD, dan komponen lainnya untuk meningkatkan performa PC.',
+      'proj.p4title': 'Proses Pembersihan PC dan Monitor',
+      'proj.p4desc': 'Bertujuan untuk menghilangkan debu yang menempel pada komponen karena berdampak besar pada performa.',
+      'proj.p5title': 'Ganti Head Printer',
+      'proj.p5desc': 'Proses penggantian head printer bertujuan mengembalikan hasil cetak printer ke kondisi normal.',
+      'proj.p6title': 'Tambah Ruang di Local Disk C',
+      'proj.p6desc': 'Tujuannya adalah meningkatkan kapasitas penyimpanan untuk menyimpan lebih banyak data.',
+      'proj.p7title': 'Desain Canva',
+      'proj.p7desc': 'Rancang dan buat jadwal tugas di lokasi magang.',
+      'proj.p8title': 'Periksa kabel RJ45 ',
+      'proj.p8desc': 'Periksa kabel RJ45 untuk memastikan semuanya berfungsi.',
+      'proj.p9title': 'Pergantian SSD',
+      'proj.p9desc': 'Proses mengganti hdd ke ssd untuk mendapat performa yang lebih cepat.',
+      'proj.p10title': 'Situs web portofolio',
+      'proj.p10desc': 'Situs web portofolio sederhana untuk siswa sekolah menengah kejuruan.',
+      'proj.p11title': 'Toko pakaian dan peralatan',
+      'proj.p11desc': 'Aplikasi seluler yang menampilkan penjualan barang-barang kebutuhan pokok.',
+
+      // Services
+      'svc.title': 'Galery',
+      'svc.titleHL': 'Saya',
+      'svc.subtitle': 'Koleksi foto di sekolah atau selama magang',
+      'svc.s1title': 'Pengembangan Web',
+      'svc.s1desc': 'Membangun website yang cepat, responsif, dan modern menggunakan teknologi terkini termasuk HTML, CSS, JavaScript, PHP, dan Laravel.',
+      'svc.s2title': 'Desain UI/UX',
+      'svc.s2desc': 'Merancang antarmuka yang indah dan ramah pengguna menggunakan Figma, dengan fokus pada pengalaman pengguna yang intuitif.',
+      'svc.s3title': 'Pengembangan Backend',
+      'svc.s3desc': 'Mengembangkan logika server-side dan manajemen database yang andal dengan PHP, Node.js, MySQL, dan integrasi RESTful API.',
+      'svc.s4title': 'Perbaikan & Pemeliharaan PC',
+      'svc.s4desc': 'Pemecahan masalah hardware, upgrade komponen, instalasi driver, dan optimasi sistem untuk desktop dan laptop.',
+      'svc.s5title': 'Desain Aplikasi Mobile',
+      'svc.s5desc': 'Membuat wireframe dan prototipe untuk aplikasi mobile dengan prinsip desain yang bersih dan alur pengguna yang mulus.',
+      'svc.s6title': 'Pengaturan Jaringan',
+      'svc.s6desc': 'Menyiapkan dan mengonfigurasi jaringan area lokal, pengujian kabel, dan infrastruktur jaringan dasar untuk kantor kecil.',
+
+      // Experience
+      'exp.title': 'Pengalaman',
+      'exp.titleHL': 'Saya',
+      'exp.subtitle': 'Perjalanan profesional dan pengalaman saya di sekolah dan magang.',
+      'exp.e1date': 'Januari 2026 – Sekarang',
+      'exp.e1title': 'Membuat website dan aplikasi mobile dengan mudah.',
+      'exp.e1desc': 'Dari Januari 2026 hingga sekarang saya mendapatkan banyak pengalaman dan juga telah mulai magang sehingga menambah keahlian saya di luar pemrograman.',
+      'exp.e2date': 'Mei 2025 – Januari 2026',
+      'exp.e2title': 'Mulai memperluas pengetahuan dan menjelajahi dunia pemrograman.',
+      'exp.e2desc': 'Saya mulai memperluas pengetahuan dan menjelajahi dunia pemrograman serta mempelajari javascript, php, MySQL, Database, Python, dan lain-lain.',
+      'exp.e3date': 'Januari 2025 – Mei 2025',
+      'exp.e3title': 'Mulai menyukai dunia pemrograman',
+      'exp.e3desc': 'Saya mulai menyukai dunia pemrograman dan mulai belajar membuat website sederhana menggunakan HTML dan CSS saja.',
+      'exp.e4date': 'Agustus 2024 – Januari 2025',
+      'exp.e4title': 'Pengalaman pertama memasuki dunia pemrograman',
+      'exp.e4desc': 'Pengalaman pertama memasuki dunia pemrograman terasa sulit untuk memahami kode dan alat yang digunakan.',
+
+      // Contact
+      'contact.title': 'Hubungi',
+      'contact.titleHL': 'Saya',
+      'contact.subtitle': 'Punya proyek? Mari bekerja sama untuk mewujudkan ide-idemu',
+      'contact.infoTitle': 'Informasi Kontak',
+      'contact.labelEmail': 'Email',
+      'contact.labelGitHub': 'GitHub',
+      'contact.labelIG': 'Instagram',
+      'contact.labelLocation': 'Lokasi',
+      'contact.location': 'Kota Madiun',
+      'contact.formTitle': 'Kirim Pesan',
+      'contact.fName': 'Nama',
+      'contact.fEmail': 'Email',
+      'contact.fSubject': 'Subjek',
+      'contact.fMessage': 'Pesan',
+      'contact.phName': 'Nama kamu',
+      'contact.phSubject': 'Ini tentang apa?',
+      'contact.phMessage': 'Pesan kamu...',
+      'contact.sendBtn': 'Kirim Pesan',
+      'contact.sentBtn': 'Pesan Terkirim!',
+
+      // Footer
+      'footer.desc': 'Full Stack Web Developer yang menciptakan pengalaman digital luar biasa dengan teknologi modern.',
+      'footer.quickLinks': 'Tautan Cepat',
+      'footer.connect': 'Terhubung',
+      'footer.privacy': 'Kebijakan Privasi',
+      'footer.terms': 'Ketentuan Layanan',
+      'footer.copyright': '© 2026 Rohman Teguh. Semua hak dilindungi.',
+    }
+  };
+
+  // ════════════════════════════════════════════
+  //  Active language state
+  // ════════════════════════════════════════════
+  let currentLang = 'en';
+
+  // Typewriter phrases per language
+  const twPhrases = {
+    en: ['Thank you for visiting my portfolio', 'Full Stack Web Developer', 'Building the Web, One Line at a Time'],
+    id: ['Terima kasih telah mengunjungi portofolio saya', 'Full Stack Web Developer', 'Membangun Web, Satu Baris Kode']
+  };
+  let pi = 0, ci = 0, deleting = false, twTimer = null;
+
+  function setLang(lang) {
+    currentLang = lang;
+    const dict = i18n[lang];
+
+    // Toggle button active states
+    document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+    document.getElementById('btnID').classList.toggle('active', lang === 'id');
+
+    // Translate all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+
+    // Translate placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+
+    // Reset typewriter with new language phrases
+    pi = 0; ci = 0; deleting = false;
+    if (twTimer) clearTimeout(twTimer);
+    document.getElementById('typewriter').textContent = '';
+    typeLoop();
+
+    // Update html lang attr
+    document.documentElement.lang = lang;
+  }
+
+  // ════════════════════════════════════════════
+  //  Typewriter
+  // ════════════════════════════════════════════
+  const tw = document.getElementById('typewriter');
+  function typeLoop() {
+    const phrases = twPhrases[currentLang];
+    const word = phrases[pi];
+    if (!deleting) {
+      tw.textContent = word.slice(0, ++ci);
+      if (ci === word.length) { deleting = true; twTimer = setTimeout(typeLoop, 1800); return; }
+    } else {
+      tw.textContent = word.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; twTimer = setTimeout(typeLoop, 300); return; }
+    }
+    twTimer = setTimeout(typeLoop, deleting ? 40 : 70);
+  }
+  typeLoop();
+
+  // ════════════════════════════════════════════
+  //  Particles
+  // ════════════════════════════════════════════
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (8 + Math.random() * 14) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+    p.style.opacity = (0.1 + Math.random() * 0.2);
+    container.appendChild(p);
+  }
+
+  // ════════════════════════════════════════════
+  //  Section navigation
+  // ════════════════════════════════════════════
+  function showSection(id, linkEl) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    const sec = document.getElementById(id);
+    sec.classList.add('active');
+    const fi = sec.querySelector('.fade-in, .home-inner');
+    if (fi) { fi.style.animation = 'none'; fi.offsetHeight; fi.style.animation = ''; }
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    if (linkEl) {
+      linkEl.classList.add('active');
+    } else {
+      // Cari link yang sesuai berdasarkan onclick
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + id + "'")) {
+          a.classList.add('active');
+        }
+      });
+    }
+    window.scrollTo({ top: 0 });
+    if (id === 'skills') animateBars();
+  }
+
+  // ════════════════════════════════════════════
+  //  Skill bars
+  // ════════════════════════════════════════════
+  function animateBars() {
+    document.querySelectorAll('.skill-fill').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }
+
+  // ════════════════════════════════════════════
+  //  Project filter
+  // ════════════════════════════════════════════
+  function filterProjects(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(c => {
+      if (cat === 'all' || c.dataset.cat === cat) c.classList.remove('hidden');
+      else c.classList.add('hidden');
+    });
+  }
+
+  // ════════════════════════════════════════════
+  //  Mobile menu
+  // ════════════════════════════════════════════
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // ════════════════════════════════════════════
+  //  Send message
+  // ════════════════════════════════════════════
+  function handleSend(btn) {
+    // Ambil nilai form
+    const formWrap = btn.closest('.contact-form-wrap');
+    const nameEl    = formWrap.querySelectorAll('input')[0];
+    const emailEl   = formWrap.querySelectorAll('input')[1];
+    const subjectEl = formWrap.querySelectorAll('input')[2];
+    const msgEl     = formWrap.querySelector('textarea');
+
+    const name    = nameEl.value.trim();
+    const email   = emailEl.value.trim();
+    const subject = subjectEl.value.trim();
+    const message = msgEl.value.trim();
+
+    // Validasi sederhana
+    if (!name || !email || !subject || !message) {
+      const errMsg = currentLang === 'id'
+        ? 'Mohon isi semua field terlebih dahulu!'
+        : 'Please fill in all fields first!';
+      alert(errMsg);
+      return;
+    }
+
+    // Susun teks pesan WhatsApp
+    const waText = encodeURIComponent(
+      `Halo Rohman Teguh!\n\nNama: ${name}\nEmail: ${email}\nSubjek: ${subject}\n\nPesan:\n${message}`
+    );
+    const waNumber = '6285847565851'; // nomor WA tanpa +
+    const waURL = `https://wa.me/${waNumber}?text=${waText}`;
+
+    // Buka WhatsApp di tab baru
+    window.open(waURL, '_blank');
+
+    // Ubah tampilan tombol jadi sukses
+    const sentText = i18n[currentLang]['contact.sentBtn'] || 'Message Sent!';
+    const sendText = i18n[currentLang]['contact.sendBtn'] || 'Send Message';
+    btn.innerHTML = `<i class="fas fa-check"></i> ${sentText}`;
+    btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    btn.disabled = true;
+
+    // Reset form & tombol setelah 3 detik
+    setTimeout(() => {
+      btn.innerHTML = `<i class="fas fa-paper-plane"></i> <span data-i18n="contact.sendBtn">${sendText}</span>`;
+      btn.style.background = '';
+      btn.disabled = false;
+      nameEl.value = '';
+      emailEl.value = '';
+      subjectEl.value = '';
+      msgEl.value = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
